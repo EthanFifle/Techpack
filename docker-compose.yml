@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  openpose-api:
+    image: openpose-api
+    ports:
+      - "8081:8081"
+    networks:
+      - techpackBE
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  measure-me:
+    image: measure-me
+    ports:
+      - "8080:8080"
+    networks:
+      - techpackBE
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  techpack:
+    image: techpack
+    ports:
+      - "5000:5000"
+    depends_on:
+      - openpose-api
+      - measure-me
+    networks:
+      - techpackBE
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+networks:
+  techpackBE:

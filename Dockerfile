@@ -22,6 +22,6 @@ RUN pip install -r requirements.txt && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["python", "app.py"]

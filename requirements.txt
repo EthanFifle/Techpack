@@ -10,4 +10,5 @@ tqdm
 human-body-prior
 chumpy
 Flask
+flask-cors
 requests
